@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+tensors/time_series_full_v1/shard_0001.h5
+tensors/time_series_full_v1/shard_0001.h5.tmp

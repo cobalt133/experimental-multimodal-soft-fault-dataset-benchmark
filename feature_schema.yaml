@@ -1,0 +1,90 @@
+structured_signal_features_full_v1:
+  description: Full-coverage structured signal features for all 3463 samples.
+  columns:
+  - sample_id
+  - record_id
+  - power_x_db
+  - power_y_db
+  - power_total_db
+  - crest_i1
+  - crest_q1
+  - crest_i2
+  - crest_q2
+  - skew_i1
+  - skew_q1
+  - skew_i2
+  - skew_q2
+  - kurt_i1
+  - kurt_q1
+  - kurt_i2
+  - kurt_q2
+  - corr_i1_q1
+  - corr_i2_q2
+  - corr_i1_i2
+  - corr_q1_q2
+  - corr_amp_xy
+  - amp_mean_x
+  - amp_mean_y
+  - amp_std_x
+  - amp_std_y
+  - amp_skew_x
+  - amp_skew_y
+  - amp_kurt_x
+  - amp_kurt_y
+  - psd_centroid_norm
+  - psd_bw3_norm
+  - psd_bw10_norm
+  - psd_lr_diff_db
+  - psd_flatness_db
+  - psd_ripple_std_db
+tensor_modalities:
+  time_series_full_v1:
+    description: Full-coverage time-series tensors for all samples.
+    datasets:
+      sample_id:
+        shape:
+        - N
+      iq_ds:
+        shape:
+        - N
+        - 4
+        - 2048
+      amp_seq:
+        shape:
+        - N
+        - 2
+        - 2048
+      phase_seq:
+        shape:
+        - N
+        - 2
+        - 2048
+      psd_seq:
+        shape:
+        - N
+        - 3
+        - 512
+metadata_columns:
+  identifiers:
+  - sample_id
+  - record_id
+  experimental_conditions:
+  - baud_gbaud
+  - modulation_order
+  - modulation
+  - lp_id
+  - distance_km
+  - condition
+  - fault_family
+  - severity_value_db
+  - wss_setting
+  - wss_offset_ghz
+  - wss_bandwidth_ghz
+  - repeat_idx
+  labels:
+  - main_label
+  - main_label_id
+  - sub_label
+  - is_normal
+  tensor_index:
+  - tensor_index
