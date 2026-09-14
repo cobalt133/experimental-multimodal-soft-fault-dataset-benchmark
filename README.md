@@ -2,25 +2,28 @@
 
 [中文说明](README_zh.md)
 
-This is a standalone public dataset for soft-fault studies in coherent optical
-transmission systems. It contains `3463` receiver-side captures from controlled
-experiments, with `34` structured signal features and four aligned time-series
-tensor modalities for each sample.
+This is the final five-class public benchmark for receiver-side soft-fault
+diagnosis in coherent optical transmission systems. It provides 3355 primary
+diagnosis records (from a 3463-record release), 34 structured descriptors and
+aligned receiver representations. The public package contains derived data,
+baseline models, fixed evaluation splits, metrics and figure-generation code.
+Raw acquisition files and private DSP source are not included.
 
-The easiest entry point is a plain CSV table: sample identifiers first, feature
-columns next, and the fault label last. Tensor data and reproducibility assets
-are included for users who want to go beyond tabular baselines.
+The diagnosis labels are `normal`, `voa_attenuation`, `edfa_gain_reduction`,
+`wss_offset`, and `wss_bandwidth`. The nominal WSS bandwidth is 75 GHz;
+narrowed settings are 70, 65, 60 and 55 GHz.
 
 ## Start With CSV
 
-Use the four-class structured table:
+Use the five-class structured table:
 
 ```text
-easy_start/structured_4class.csv
+data/structured_features_3355.csv
 ```
 
-The columns are `sample_id`, `record_id`, `34` structured features, and final
-column `label`. Labels are `normal`, `wss`, `attenuation`, and `edfa`.
+The table contains capture identifiers, structured descriptors and the final
+five-class label. A 2224-record low-BER analysis cohort is documented in the
+metrics and data dictionaries.
 
 Run a small structured-feature example:
 
@@ -29,24 +32,23 @@ pip install -r requirements.txt
 python easy_start/quick_start_structured.py
 ```
 
-Additional starter tables:
+Additional public materials:
 
-- `easy_start/sample_conditions.csv`: maps each sample to its distance,
+- `data_dictionary/capture_index.csv`: maps each sample to its distance,
   modulation, LP setting, fault family, attenuation/EDFA dB value, WSS
   center-frequency offset, and WSS bandwidth.
-- `easy_start/structured_5class.csv`: splits WSS into `wss_offset` and
-  `wss_bandwidth`.
-- `easy_start/structured_with_conditions.csv`: adds distance, modulation, LP,
-  severity, WSS center-frequency offset, and WSS bandwidth columns for custom
-  analysis.
+- `data_dictionary/feature_schema.yaml`: public feature definitions.
+- `splits/`: configuration-group and condition-holdout assignments.
+- `metrics/`: saved benchmark summaries.
+- `figures/main/`: manuscript figures.
 
 Join easy-start features to conditions with the sample IDs:
 
 ```python
 import pandas as pd
 
-features = pd.read_csv("easy_start/structured_4class.csv")
-conditions = pd.read_csv("easy_start/sample_conditions.csv")
+features = pd.read_csv("data/structured_features_3355.csv")
+conditions = pd.read_csv("data_dictionary/capture_index.csv")
 data = features.merge(conditions, on=["sample_id", "record_id"], validate="one_to_one")
 ```
 
