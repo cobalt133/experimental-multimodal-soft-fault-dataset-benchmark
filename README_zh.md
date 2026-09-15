@@ -12,7 +12,7 @@
 四分类结构化特征表：
 
 ```text
-easy_start/structured_4class.csv
+data/structured_features_3355.csv
 ```
 
 标签包括：
@@ -44,7 +44,7 @@ python easy_start/quick_start_structured.py
 ```python
 import pandas as pd
 
-features = pd.read_csv("easy_start/structured_4class.csv")
+features = pd.read_csv("data/structured_features_3355.csv")
 conditions = pd.read_csv("easy_start/sample_conditions.csv")
 data = features.merge(conditions, on=["sample_id", "record_id"], validate="one_to_one")
 ```

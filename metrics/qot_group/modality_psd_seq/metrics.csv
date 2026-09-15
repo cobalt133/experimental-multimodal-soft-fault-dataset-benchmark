@@ -1,0 +1,2 @@
+fold,n,groups,macro_f1,accuracy,normal_false_alarm,fault_missed_detection,fault_f1,macro_f1_low,macro_f1_high,accuracy_low,accuracy_high,normal_false_alarm_low,normal_false_alarm_high,fault_missed_detection_low,fault_missed_detection_high,fault_f1_low,fault_f1_high,bootstrap_valid,bootstrap_requested
+pooled,2763,242,0.7158663502249997,0.7050307636626855,0.20029895366218237,0.09694364851957975,,0.6910777197276671,0.7387524941300171,0.6639112260615389,0.7452821260170895,0.1350248324734626,0.2719177496580027,0.06790786528950088,0.12979947871658024,,,2000,2000
