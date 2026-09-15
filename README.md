@@ -57,7 +57,7 @@ data = features.merge(conditions, on=["sample_id", "record_id"], validate="one_t
 - `metadata/`: sample and record indices for all `3463` captures
 - `tabular/`: full structured feature exports (`34` modeling features per sample)
 - `tensors/`: full tensor indices plus the complete time-series tensor shard
-- `loaders/`: Python and MATLAB helpers for loading samples and features
+- `src/`: Python preprocessing, models, evaluation, and figure helpers
 - `easy_start/`: CSV-only entrypoint for the main structured tasks
 - `feature_schema.yaml`, `label_schema.yaml`, and `dataset_card.md`: dataset documentation
 

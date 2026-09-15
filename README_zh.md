@@ -54,7 +54,7 @@ data = features.merge(conditions, on=["sample_id", "record_id"], validate="one_t
 - `metadata/`：全部 `3463` 个样本的公开索引和实验条件元数据。
 - `tabular/`：完整结构化特征表，每个样本 34 个建模特征。
 - `tensors/`：时序张量索引和完整张量分片。
-- `loaders/`：Python 和 MATLAB 读取示例。
+- `src/`：Python 预处理、模型、评估和绘图工具。
 - `easy_start/`：最简 CSV 入口和结构化特征 baseline 示例。
 - `feature_schema.yaml`、`label_schema.yaml`、`dataset_card.md`：数据说明文件。
 
