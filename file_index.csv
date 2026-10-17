@@ -2,8 +2,8 @@ path,size_bytes
 .gitignore,62
 CITATION.cff,582
 LICENSE,364
-README.md,3330
-README_zh.md,1940
+README.md,3312
+README_zh.md,1928
 data/multimodal_index.csv,227998
 data/qot_annotations_3355.csv,550830
 data/representative_constellations.json,6462
@@ -21,7 +21,7 @@ data_dictionary/feature_dictionary.csv,565
 data_dictionary/labels.csv,173
 data_dictionary/psd_frequency_axis.csv,31072
 data_dictionary/qot_definition.md,2093
-docs/Extended_Results.pdf,51033094
+docs/Additional_Material.pdf,51033069
 figures/main/01_baselines.pdf,29933
 figures/main/02_confusions.pdf,40671
 figures/main/03_condition_transfer.pdf,35045

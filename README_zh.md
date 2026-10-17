@@ -4,7 +4,7 @@
 
 data_dictionary定义标签、配置、特征、数组和QoT；data提供派生数据；splits保存每个实验的训练/测试成员；predictions和metrics保存结果；src包含模型、核验和绘图；scripts提供入口；figures保存PDF；reproduction保存复现输出。包内不含原始示波器文件或私有DSP代码。
 
-figures/main保存正文实际使用的图，figures/supplementary保存单独的扩展图。[扩展结果与星座图集](docs/Extended_Results.pdf) 汇集分类与迁移结果、逐工况BER，以及按全部299个物理配置索引的代表星座图；目录和配置索引可跳转至相应页面。对应数值结果及绘图代码位于上述各目录。
+figures/main保存正文实际使用的图，figures/supplementary保存单独的扩展图。[附加材料](docs/Additional_Material.pdf) 汇集分类与迁移结果、逐工况BER，以及按全部299个物理配置索引的代表星座图；目录和配置索引可跳转至相应页面。对应数值结果及绘图代码位于上述各目录。
 
 采集日期分组压力测试同时改变日期与入纤功率：990条组中989条为5 dBm、1条功率未记录；2365条组中1214条为1 dBm、1151条为3 dBm。因此该测试不能隔离日期效应，也不代表独立采集会话间的迁移。固定成员和预测保留在acquisition_day_proxy目录。
 
