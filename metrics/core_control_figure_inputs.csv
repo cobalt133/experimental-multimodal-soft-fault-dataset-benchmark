@@ -1,0 +1,9 @@
+panel,cohort,experiment,n,groups,macro_f1,low,high
+(a) Input controls: full primary,full,metadata_control,3355,299,0.2292654418644593,0.1836161556455686,0.2746427525693887
+(a) Input controls: full primary,full,ablation_power_only,3355,299,0.4886844899196309,0.4468676933592858,0.525624280672687
+(a) Input controls: full primary,full,ablation_no_power,3355,299,0.8102411737765886,0.7735133356940608,0.8430132490493625
+(a) Input controls: full primary,full,baseline_lightgbm,3355,299,0.8418897621818253,0.8064044609679369,0.8724008120029354
+(b) Paired distance transfer,full,pairwise_distance_F32,2121,193,0.7637040193698768,0.6996984946261264,0.8142553042823577
+(b) Paired distance transfer,full,pairwise_distance_no_spectral,2121,193,0.6523037254929243,0.5927694762654906,0.7051747942781464
+(b) Paired distance transfer,low_ber,pairwise_distance_F32,1366,156,0.7409750600089308,0.6773576522377407,0.7945697712659302
+(b) Paired distance transfer,low_ber,pairwise_distance_no_spectral,1366,156,0.640244750910154,0.5718979447065113,0.6955248870023635

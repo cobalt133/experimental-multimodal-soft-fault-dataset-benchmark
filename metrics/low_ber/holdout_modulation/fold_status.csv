@@ -1,0 +1,3 @@
+fold,status,n_train,n_test,group_overlap,warnings
+16QAM,COMPLETE,1159,1065,0,
+QPSK,COMPLETE,1065,1159,0,

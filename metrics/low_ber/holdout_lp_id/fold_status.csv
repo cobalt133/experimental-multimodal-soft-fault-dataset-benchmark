@@ -1,0 +1,4 @@
+fold,status,n_train,n_test,group_overlap,warnings
+1.0,COMPLETE,1434,789,0,
+3.0,COMPLETE,1405,818,0,
+5.0,COMPLETE,1607,616,0,

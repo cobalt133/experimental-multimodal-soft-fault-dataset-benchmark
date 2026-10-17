@@ -1,0 +1,6 @@
+diagnosis_label,display_name
+normal,Normal
+attenuation,VOA attenuation
+edfa,EDFA gain reduction
+wss_offset,WSS center-frequency offset
+wss_bandwidth,WSS bandwidth narrowing

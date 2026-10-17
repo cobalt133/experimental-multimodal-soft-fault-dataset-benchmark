@@ -1,0 +1,11 @@
+cohort,experiment,n,different_predictions,prediction_identity
+full,baseline_logistic_regression,3355,0,True
+full,baseline_random_forest,3355,0,True
+full,baseline_mlp,3355,0,True
+low_ber,baseline_logistic_regression,2224,0,True
+low_ber,baseline_random_forest,2224,0,True
+low_ber,baseline_mlp,2224,0,True
+full,baseline_lightgbm,3355,0,True
+low_ber,baseline_lightgbm,2224,0,True
+full,holdout_exact_cell,1867,0,True
+full,modality_psd_seq,3355,0,True

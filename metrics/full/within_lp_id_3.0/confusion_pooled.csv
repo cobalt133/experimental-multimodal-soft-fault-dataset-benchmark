@@ -1,0 +1,6 @@
+Unnamed: 0,normal,attenuation,edfa,wss_offset,wss_bandwidth
+normal,255,0,0,7,3
+attenuation,0,112,50,0,0
+edfa,0,54,270,0,0
+wss_offset,15,0,0,215,10
+wss_bandwidth,5,0,0,5,150

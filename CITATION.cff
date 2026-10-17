@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying dataset paper."
+title: "Experimental multimodal soft-fault dataset and benchmark"
+type: dataset
+authors:
+  - family-names: Sun
+    given-names: Zhiming
+  - family-names: Cai
+    given-names: Xiang
+  - family-names: Fan
+    given-names: Runzhe
+  - family-names: Yan
+    given-names: Xulong
+  - family-names: Wang
+    given-names: Cen
+  - family-names: Zhou
+    given-names: Xian
+  - family-names: Zhang
+    given-names: Fan
+repository-code: "https://github.com/cobalt133/experimental-multimodal-soft-fault-dataset-benchmark"

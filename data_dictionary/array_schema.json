@@ -1,0 +1,31 @@
+{
+  "iq_ds": [
+    4,
+    2048
+  ],
+  "amp_seq": [
+    2,
+    2048
+  ],
+  "phase_seq": [
+    2,
+    2048
+  ],
+  "psd_seq": [
+    3,
+    512
+  ],
+  "amp_seq_quantity": "normalized intensity, not field amplitude",
+  "psd_channels": [
+    "X",
+    "Y",
+    "coherent mixture"
+  ],
+  "source_samples_per_branch": 1048576,
+  "source_sample_rate_gsps": 256,
+  "psd_fft_samples": 8192,
+  "psd_pooling": "mean of 16 adjacent logarithmic values",
+  "temporal_indices": "floor(linspace(0,1048575,2048))",
+  "receiver_qot_resampling_gsps": 128,
+  "psd_coordinate": "mean frequency of each 16-bin shifted FFT block; see psd_frequency_axis.csv"
+}

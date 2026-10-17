@@ -1,78 +1,11 @@
-# 实验多模态软故障数据集与基准
+# 实验多模态软故障数据与基准
 
-这是一个面向相干光传输系统软故障研究的独立开源数据集。仓库包含 `3463`
-个接收端采集样本，每个样本提供 `34` 个结构化信号特征，并配套四种对齐的
-时序张量模态。
+主入口为 data/structured_features_3355.csv：3355条、五类、32个明确输入特征。2224条低BER子集独立提供。Normal的WSS名义带宽为75 GHz，70/65/60/55 GHz为带宽收窄；中心偏移单独分类。低BER按有效记录的双偏振平均BER<0.024筛选，不等于真实FEC译码结果。
 
-最简单的使用方式是直接读取 CSV：前两列是公开样本 ID，随后是 34 个特征列，
-最后一列是故障标签。
+data_dictionary定义标签、配置、特征、数组和QoT；data提供派生数据；splits保存每个实验的训练/测试成员；predictions和metrics保存结果；src包含模型、核验和绘图；scripts提供入口；figures保存PDF；reproduction保存复现输出。包内不含原始示波器文件或私有DSP代码。
 
-## 快速开始
+figures/main保存正文实际使用的图，figures/supplementary保存单独的扩展图。[扩展结果与星座图集](docs/Extended_Results.pdf) 汇集分类与迁移结果、逐工况BER，以及按全部299个物理配置索引的代表星座图；目录和配置索引可跳转至相应页面。对应数值结果及绘图代码位于上述各目录。
 
-四分类结构化特征表：
+采集日期分组压力测试同时改变日期与入纤功率：990条组中989条为5 dBm、1条功率未记录；2365条组中1214条为1 dBm、1151条为3 dBm。因此该测试不能隔离日期效应，也不代表独立采集会话间的迁移。固定成员和预测保留在acquisition_day_proxy目录。
 
-```text
-data/structured_features_3355.csv
-```
-
-标签包括：
-
-- `normal`
-- `wss`
-- `attenuation`
-- `edfa`
-
-运行一个最小示例：
-
-```bash
-pip install -r requirements.txt
-python easy_start/quick_start_structured.py
-```
-
-其他入口表：
-
-- `easy_start/sample_conditions.csv`：每个公开样本一行，用
-  `sample_id` 和 `record_id` 对应距离、调制格式、LP 设置、故障类别、
-  衰减/EDFA dB 数值、WSS 中心频率偏移和 WSS 带宽。
-- `easy_start/structured_5class.csv`：在四分类基础上，将 WSS 拆分为
-  `wss_offset` 和 `wss_bandwidth`。
-- `easy_start/structured_with_conditions.csv`：额外包含距离、调制格式、
-  LP、故障强度、WSS 中心频率偏移和 WSS 带宽等公开条件列，便于自定义分析。
-
-如果希望把最简特征表和实验配置对应起来，可以直接按公开 ID 合并：
-
-```python
-import pandas as pd
-
-features = pd.read_csv("data/structured_features_3355.csv")
-conditions = pd.read_csv("easy_start/sample_conditions.csv")
-data = features.merge(conditions, on=["sample_id", "record_id"], validate="one_to_one")
-```
-
-## 仓库内容
-
-- `metadata/`：全部 `3463` 个样本的公开索引和实验条件元数据。
-- `tabular/`：完整结构化特征表，每个样本 34 个建模特征。
-- `tensors/`：时序张量索引和完整张量分片。
-- `src/`：Python 预处理、模型、评估和绘图工具。
-- `easy_start/`：最简 CSV 入口和结构化特征 baseline 示例。
-- `feature_schema.yaml`、`label_schema.yaml`、`dataset_card.md`：数据说明文件。
-
-## 张量数据
-
-GitHub 对单个文件大小有限制，因此完整张量文件
-`tensors/time_series_full_v1/shard_0001.h5` 以三个分片保存：
-
-```text
-tensors/time_series_full_v1/shard_0001.h5.part-00
-tensors/time_series_full_v1/shard_0001.h5.part-01
-tensors/time_series_full_v1/shard_0001.h5.part-02
-```
-
-克隆仓库后，如需使用张量数据，请运行：
-
-```bash
-bash scripts/rebuild_tensor_shard.sh
-```
-
-脚本会合并分片，并使用 SHA-256 校验文件完整性。
+安装 requirements.txt 后，在仓库根目录依次运行 scripts/quick_start.py、scripts/run_baselines.py、scripts/run_targeted_analysis.py 和 scripts/plot_results.py。可用参数见英文README。重新运行的结果进入 reproduction/reruns，不覆盖已报告预测。特征输入仅使用 feature_columns.json 中的32列，不要把工况或BER当成模型输入。完整工况留出采用主资源中具备五类支持的1867条，其他实验也以各自splits为准。数组2048位置是同次采集内均匀选点，不是连续恢复符号。
