@@ -24,7 +24,9 @@ def model(name):
 
 def scores(p):
     n=p.y_true.eq('normal');pn=p.y_pred.eq('normal')
-    return {'n':len(p),'macro_f1':f1_score(p.y_true,p.y_pred,average='macro'),'accuracy':accuracy_score(p.y_true,p.y_pred),'normal_false_alarm':float((~pn[n]).mean()),'fault_missed_detection':float(pn[~n].mean())}
+    out={'n':len(p),'macro_f1':f1_score(p.y_true,p.y_pred,average='macro'),'accuracy':accuracy_score(p.y_true,p.y_pred),'normal_false_alarm':float((~pn[n]).mean()),'fault_missed_detection':float(pn[~n].mean())}
+    if set(p.y_true)=={'normal','fault'}:out['fault_f1']=f1_score(p.y_true,p.y_pred,pos_label='fault')
+    return out
 
 def run(cohort,experiment,name='lightgbm'):
     frame=pd.read_csv(ROOT/'data'/('structured_features_3355.csv' if cohort=='full' else 'structured_features_2224_low_ber.csv')).set_index('sample_id')
@@ -90,7 +92,10 @@ def verify():
         metric=ROOT/'metrics'/f.relative_to(ROOT/'predictions').parent/'metrics.csv'
         if metric.exists():
             m=pd.read_csv(metric);m=m[m.fold.astype(str).eq('pooled')].iloc[0]
-            assert abs(r['macro_f1']-m.macro_f1)<1e-10
+            for key,value in r.items():
+                if key in m.index:
+                    if not np.isclose(value,m[key],rtol=0,atol=1e-10):
+                        raise ValueError(f'Saved metric mismatch: {f.relative_to(ROOT)} / {key}')
         rows.append(r)
     out=ROOT/'reproduction/verification_metrics.csv';pd.DataFrame(rows).to_csv(out,index=False)
     print(f'Verified {len(rows)} saved prediction sets; no model fitting.');return rows

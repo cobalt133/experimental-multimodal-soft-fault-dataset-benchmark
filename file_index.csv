@@ -365,7 +365,7 @@ reproduction/reruns/low_ber/baseline_mlp/predictions.csv,75670
 reproduction/reruns/low_ber/baseline_random_forest/metrics.json,174
 reproduction/reruns/low_ber/baseline_random_forest/predictions.csv,75600
 reproduction/severity_support_and_intervals.csv,10555
-reproduction/verification_metrics.csv,7199
+reproduction/verification_metrics.csv,7594
 requirements.txt,93
 scripts/plot_results.py,237
 scripts/quick_start.py,151
@@ -445,6 +445,6 @@ src/evaluation/verify.py,147
 src/evaluation/verify_severity_support.py,3188
 src/figures/plot_controls.py,2489
 src/figures/plot_core_analysis.py,5198
-src/figures/plot_results.py,9409
+src/figures/plot_results.py,9428
 src/figures/plot_single_column.py,5344
-src/models/reference.py,6638
+src/models/reference.py,6942

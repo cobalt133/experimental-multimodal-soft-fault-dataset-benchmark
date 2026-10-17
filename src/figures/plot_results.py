@@ -102,7 +102,7 @@ def spectra():
   ax.set(xlabel='Frequency (GHz)',title=['X','Y','Coherent mixture'][j],xlim=(-60,60));finish(ax)
  axs[0].set_ylabel('Digital log-spectrum (dB)');axs[-1].legend(fontsize=8);save(fig,'spectral_class_means')
 def constellations():
- cases=json.loads((ROOT/'data/representative_constellations.json').read_text());z=np.load(ROOT/'data/representative_constellations.npz')
+ cases=json.loads((ROOT/'data/representative_constellations.json').read_text());z=np.load(ROOT/'data/representative_constellations.npz',allow_pickle=False)
  groups=[['normal','wss_bandwidth'],['voa','edfa'],['wss_offset']]
  fig=plt.figure(figsize=(10.6,5.4));gs=fig.add_gridspec(3,6,hspace=.45,wspace=.12);letter=0
  for row,fams in enumerate(groups):
