@@ -4,14 +4,14 @@ Start with `data/structured_features_3355.csv` (3355 captures, five diagnosis la
 
 ## Contents
 
-- `data_dictionary/`: labels, capture/configuration identifiers, operating conditions, QoT eligibility, feature whitelist and array shapes.
+- `data_dictionary/`: labels, capture/configuration identifiers, operating conditions, QoT eligibility, feature definitions and array shapes. `feature_dictionary.csv` gives per-column inputs, formulas, units, and model inclusion; `feature_definitions.md` explains shared normalization and numerical rules. `spectral_definitions.json` provides the spectral calculation in machine-readable form. The 32 model inputs retain their published values.
 - `data/`: clean primary and low-BER tables; multimodal index; existing public derived tensor parts. No raw oscilloscope files or private DSP code.
 - `splits/`: exact train/test membership for each experiment and cohort. Configuration repetitions stay together except in the explicitly named capture-random comparison.
 - `predictions/`, `metrics/`: saved held-out predictions, confusion counts, uncertainty summaries and fold eligibility.
 - `src/models/`: four fixed reference models; `src/evaluation/`: strict replay and verification; `src/figures/`: figures from saved metrics.
 - `scripts/`: command-line entry points; `figures/`: PDF outputs; `reproduction/`: integrity and validation reports.
 
-`figures/main/` contains the figures used in the manuscript. `figures/supplementary/` contains individual extended figures. [Additional Material](docs/Additional_Material.pdf) collects classification and transfer results, condition-resolved BER, and representative constellations indexed by all 299 physical configurations. Its contents and configuration index link to the corresponding pages. Numerical results and plotting code are provided in the folders listed above.
+`figures/main/` contains the figures used in the manuscript. `figures/supplementary/` contains individual additional figures. [Additional Material](docs/Additional_Material.pdf) collects classification and transfer results, condition-resolved BER, and representative constellations indexed by all 299 physical configurations. Its contents and configuration index link to the corresponding pages. Numerical results and plotting code are provided in the folders listed above.
 
 The acquisition-date stress test changes launch power as well as date: the 990-capture group contains 989 captures at 5 dBm and one with unrecorded power; the 2365-capture group contains 1214 at 1 dBm and 1151 at 3 dBm. It does not isolate a date effect or measure transfer between independently identified acquisition sessions. Exact memberships and predictions are retained under `acquisition_day_proxy`.
 

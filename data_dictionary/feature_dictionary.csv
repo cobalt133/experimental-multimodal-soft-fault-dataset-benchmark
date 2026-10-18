@@ -1,35 +1,35 @@
-feature,model_input
-power_x_db,True
-power_y_db,True
-power_total_db,True
-crest_i1,True
-crest_q1,True
-crest_i2,True
-crest_q2,True
-skew_i1,True
-skew_q1,True
-skew_i2,True
-skew_q2,True
-kurt_i1,True
-kurt_q1,True
-kurt_i2,True
-kurt_q2,True
-corr_i1_q1,True
-corr_i2_q2,True
-corr_i1_i2,True
-corr_q1_q2,True
-corr_amp_xy,True
-amp_std_x,True
-amp_std_y,True
-amp_skew_x,True
-amp_skew_y,True
-amp_kurt_x,True
-amp_kurt_y,True
-psd_centroid_norm,True
-psd_bw3_norm,True
-psd_bw10_norm,True
-psd_lr_diff_db,True
-psd_flatness_db,True
-psd_ripple_std_db,True
-amp_mean_x,False
-amp_mean_y,False
+feature,model_input,meaning,input_and_normalization,unit_or_coordinate,calculation,scope,definition_reference
+power_x_db,True,Mean electrical squared magnitude of each polarization before branch normalization.,"Raw $X$, $Y$; epsilon added to each full-capture mean power.","Relative dB in acquisition squared-amplitude units, not calibrated dBm. ","$10\log_{10}p_x$, $10\log_{10}p_y$.",Full capture,feature_definitions.md
+power_y_db,True,Mean electrical squared magnitude of each polarization before branch normalization.,"Raw $X$, $Y$; epsilon added to each full-capture mean power.","Relative dB in acquisition squared-amplitude units, not calibrated dBm. ","$10\log_{10}p_x$, $10\log_{10}p_y$.",Full capture,feature_definitions.md
+power_total_db,True,Sum of the two pre-normalization branch powers.,$p_x+p_y$; contains both branch epsilon terms.,Same relative dB convention. ,$10\log_{10}(p_x+p_y)$.,Full capture,feature_definitions.md
+crest_i1,True,Peak-to-RMS ratio of each real channel.,"Respectively $I_1,Q_1,I_2,Q_2$; raw channel scale, no mean removal.",Dimensionless ratio. ,$\max\lvert v\rvert/[\sqrt{\operatorname{mean}(v^2)}+\epsilon]$.,Full capture,feature_definitions.md
+crest_q1,True,Peak-to-RMS ratio of each real channel.,"Respectively $I_1,Q_1,I_2,Q_2$; raw channel scale, no mean removal.",Dimensionless ratio. ,$\max\lvert v\rvert/[\sqrt{\operatorname{mean}(v^2)}+\epsilon]$.,Full capture,feature_definitions.md
+crest_i2,True,Peak-to-RMS ratio of each real channel.,"Respectively $I_1,Q_1,I_2,Q_2$; raw channel scale, no mean removal.",Dimensionless ratio. ,$\max\lvert v\rvert/[\sqrt{\operatorname{mean}(v^2)}+\epsilon]$.,Full capture,feature_definitions.md
+crest_q2,True,Peak-to-RMS ratio of each real channel.,"Respectively $I_1,Q_1,I_2,Q_2$; raw channel scale, no mean removal.",Dimensionless ratio. ,$\max\lvert v\rvert/[\sqrt{\operatorname{mean}(v^2)}+\epsilon]$.,Full capture,feature_definitions.md
+skew_i1,True,Asymmetry of the channel-value distribution.,"Respectively $I_1,Q_1,I_2,Q_2$; centered and divided by its own standard deviation.",Dimensionless. ,$\operatorname{skew}(v)$ as defined above.,Full capture,feature_definitions.md
+skew_q1,True,Asymmetry of the channel-value distribution.,"Respectively $I_1,Q_1,I_2,Q_2$; centered and divided by its own standard deviation.",Dimensionless. ,$\operatorname{skew}(v)$ as defined above.,Full capture,feature_definitions.md
+skew_i2,True,Asymmetry of the channel-value distribution.,"Respectively $I_1,Q_1,I_2,Q_2$; centered and divided by its own standard deviation.",Dimensionless. ,$\operatorname{skew}(v)$ as defined above.,Full capture,feature_definitions.md
+skew_q2,True,Asymmetry of the channel-value distribution.,"Respectively $I_1,Q_1,I_2,Q_2$; centered and divided by its own standard deviation.",Dimensionless. ,$\operatorname{skew}(v)$ as defined above.,Full capture,feature_definitions.md
+kurt_i1,True,"Fourth standardized moment, describing tails and concentration.","Respectively $I_1,Q_1,I_2,Q_2$; same centering/scaling.",Dimensionless; not excess kurtosis. ,$\operatorname{kurt}(v)$ as defined above.,Full capture,feature_definitions.md
+kurt_q1,True,"Fourth standardized moment, describing tails and concentration.","Respectively $I_1,Q_1,I_2,Q_2$; same centering/scaling.",Dimensionless; not excess kurtosis. ,$\operatorname{kurt}(v)$ as defined above.,Full capture,feature_definitions.md
+kurt_i2,True,"Fourth standardized moment, describing tails and concentration.","Respectively $I_1,Q_1,I_2,Q_2$; same centering/scaling.",Dimensionless; not excess kurtosis. ,$\operatorname{kurt}(v)$ as defined above.,Full capture,feature_definitions.md
+kurt_q2,True,"Fourth standardized moment, describing tails and concentration.","Respectively $I_1,Q_1,I_2,Q_2$; same centering/scaling.",Dimensionless; not excess kurtosis. ,$\operatorname{kurt}(v)$ as defined above.,Full capture,feature_definitions.md
+corr_i1_q1,True,Within-polarization real-channel linear dependence.,"Raw $(I_1,Q_1)$ and $(I_2,Q_2)$ respectively.",Dimensionless. ,"$\operatorname{corr}(I_1,Q_1)$, $\operatorname{corr}(I_2,Q_2)$.",Full capture,feature_definitions.md
+corr_i2_q2,True,Within-polarization real-channel linear dependence.,"Raw $(I_1,Q_1)$ and $(I_2,Q_2)$ respectively.",Dimensionless. ,"$\operatorname{corr}(I_1,Q_1)$, $\operatorname{corr}(I_2,Q_2)$.",Full capture,feature_definitions.md
+corr_i1_i2,True,Cross-polarization linear dependence of corresponding real channels.,"Raw $(I_1,I_2)$ and $(Q_1,Q_2)$ respectively.",Dimensionless. ,"$\operatorname{corr}(I_1,I_2)$, $\operatorname{corr}(Q_1,Q_2)$.",Full capture,feature_definitions.md
+corr_q1_q2,True,Cross-polarization linear dependence of corresponding real channels.,"Raw $(I_1,I_2)$ and $(Q_1,Q_2)$ respectively.",Dimensionless. ,"$\operatorname{corr}(I_1,I_2)$, $\operatorname{corr}(Q_1,Q_2)$.",Full capture,feature_definitions.md
+corr_amp_xy,True,Cross-polarization intensity linear dependence.,"Normalized $A_x$, $A_y$.",Dimensionless. ,"$\operatorname{corr}(A_x,A_y)$.",Full capture,feature_definitions.md
+amp_std_x,True,Dispersion of normalized intensity.,"Respectively $A_x,A_y$; population standard deviation.",Dimensionless normalized intensity. ,"$s(A_x)$, $s(A_y)$.",Full capture,feature_definitions.md
+amp_std_y,True,Dispersion of normalized intensity.,"Respectively $A_x,A_y$; population standard deviation.",Dimensionless normalized intensity. ,"$s(A_x)$, $s(A_y)$.",Full capture,feature_definitions.md
+amp_skew_x,True,Asymmetry of normalized-intensity distributions.,"Respectively $A_x,A_y$; standardized moments.",Dimensionless. ,"$\operatorname{skew}(A_x)$, $\operatorname{skew}(A_y)$.",Full capture,feature_definitions.md
+amp_skew_y,True,Asymmetry of normalized-intensity distributions.,"Respectively $A_x,A_y$; standardized moments.",Dimensionless. ,"$\operatorname{skew}(A_x)$, $\operatorname{skew}(A_y)$.",Full capture,feature_definitions.md
+amp_kurt_x,True,Fourth standardized moment of normalized intensity.,"Respectively $A_x,A_y$; standardized moments.",Dimensionless; not excess kurtosis. ,"$\operatorname{kurt}(A_x)$, $\operatorname{kurt}(A_y)$.",Full capture,feature_definitions.md
+amp_kurt_y,True,Fourth standardized moment of normalized intensity.,"Respectively $A_x,A_y$; standardized moments.",Dimensionless; not excess kurtosis. ,"$\operatorname{kurt}(A_x)$, $\operatorname{kurt}(A_y)$.",Full capture,feature_definitions.md
+psd_centroid_norm,True,Signed center of FFT-power mass; describes spectral displacement in the acquisition coordinate.,$Z$; weights $\pi_k$ sum to one across all bins.,Cycles/sample ($f/F_s$).,"$\sum_k f_k\pi_k$. Within the grid bounds $[-0.5,\,0.5-1/M]$. Multiply by $F_s$ for Hz. ",First 8192 samples; all FFT bins; before 16-bin pooling,feature_definitions.md
+psd_bw3_norm,True,Total frequency span of all bins within 3 dB of the global peak.,$Z$; $D_k$ compared with the global maximum of $D$.,Bandwidth divided by $F_s$.,"For $S_3=\{k:D_k\geq\max_jD_j-3\}$, return $\max_{k\in S_3}f_k-\min_{k\in S_3}f_k$. Empty mask returns zero; one bin also gives zero. Range $[0,\,1-1/M]$. ",First 8192 samples; all FFT bins; before 16-bin pooling,feature_definitions.md
+psd_bw10_norm,True,Total frequency span of all bins within 10 dB of the global peak.,Same calculation as above with a 10 dB threshold.,Bandwidth divided by $F_s$.,"For $S_{10}=\{k:D_k\geq\max_jD_j-10\}$, return $\max_{k\in S_{10}}f_k-\min_{k\in S_{10}}f_k$, or zero for an empty mask. Range $[0,\,1-1/M]$. ",First 8192 samples; all FFT bins; before 16-bin pooling,feature_definitions.md
+psd_lr_diff_db,True,Negative-frequency versus nonnegative-frequency power imbalance. Positive means the negative half has more power.,$Z$; sums of $P_k$ over the two FFT halves.,dB power ratio.,$10\log_{10}[(\sum_{k=0}^{M/2-1}P_k+\epsilon)/(\sum_{k=M/2}^{M-1}P_k+\epsilon)]$. DC belongs to the right half; the negative Nyquist bin belongs to the left. No fixed signal-independent finite bounds. ,First 8192 samples; all FFT bins; before 16-bin pooling,feature_definitions.md
+psd_flatness_db,True,Geometric-to-arithmetic mean FFT-power ratio; values nearer zero indicate a flatter full-grid power distribution.,"$Z$; all 8192 $P_k$, including out-of-band bins and the epsilon floor.",dB ratio.,"$10\log_{10}\{\exp[M^{-1}\sum_k\ln P_k]/[M^{-1}\sum_kP_k]\}$. Natural logarithm inside the geometric mean. Nonpositive mathematically, up to rounding; no fixed finite lower bound. ",First 8192 samples; all FFT bins; before 16-bin pooling,feature_definitions.md
+psd_ripple_std_db,True,Full-grid spread of log FFT power. This is not a passband-only ripple or peak-to-peak ripple measure.,$Z$; subtract the mean of all 8192 $D_k$.,dB.,"`np.std(D - np.mean(D))`, i.e. $\sqrt{M^{-1}\sum_k(D_k-\bar D)^2}$ with `ddof=0`. Nonnegative; no fixed finite upper bound. No fitted-envelope subtraction. ",First 8192 samples; all FFT bins; before 16-bin pooling,feature_definitions.md
+amp_mean_x,False,Legacy normalized-intensity means; excluded from the canonical 32-feature input.,"Respectively $A_x,A_y$.",Dimensionless. ,"$\operatorname{mean}A_x=(p_x-\epsilon)/p_x$ and analogously for Y, up to floating-point rounding. Nearly one; epsilon-sensitive redundant power proxies.",Full capture,feature_definitions.md
+amp_mean_y,False,Legacy normalized-intensity means; excluded from the canonical 32-feature input.,"Respectively $A_x,A_y$.",Dimensionless. ,"$\operatorname{mean}A_x=(p_x-\epsilon)/p_x$ and analogously for Y, up to floating-point rounding. Nearly one; epsilon-sensitive redundant power proxies.",Full capture,feature_definitions.md

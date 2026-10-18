@@ -1,0 +1,67 @@
+{
+  "sampling_rate_gsa_s": 256,
+  "input": "Z=(X_n+Y_n)/2",
+  "branch_normalization": "X_n=X/sqrt(mean(abs(X)^2)+epsilon); Y likewise; full capture",
+  "epsilon": 1e-12,
+  "input_samples": 8192,
+  "window": "symmetric Hann, np.hanning(8192)",
+  "fft": "fftshift(fft(window * Z[:8192]))",
+  "linear_power": "abs(FFT)^2 + epsilon",
+  "log_power_db": "10*log10(linear_power)",
+  "coordinate": "f/Fs = -0.5 + k/8192, k=0,...,8191",
+  "coordinate_spacing_ghz": 0.03125,
+  "scalar_features": {
+    "psd_centroid_norm": {
+      "meaning": "Signed center of FFT-power mass; describes spectral displacement in the acquisition coordinate.",
+      "input_and_normalization": "$Z$; weights $\\pi_k$ sum to one across all bins.",
+      "unit_or_coordinate": "Cycles/sample ($f/F_s$).",
+      "calculation": "$\\sum_k f_k\\pi_k$. Within the grid bounds $[-0.5,\\,0.5-1/M]$. Multiply by $F_s$ for Hz. "
+    },
+    "psd_bw3_norm": {
+      "meaning": "Total frequency span of all bins within 3 dB of the global peak.",
+      "input_and_normalization": "$Z$; $D_k$ compared with the global maximum of $D$.",
+      "unit_or_coordinate": "Bandwidth divided by $F_s$.",
+      "calculation": "For $S_3=\\{k:D_k\\geq\\max_jD_j-3\\}$, return $\\max_{k\\in S_3}f_k-\\min_{k\\in S_3}f_k$. Empty mask returns zero; one bin also gives zero. Range $[0,\\,1-1/M]$. "
+    },
+    "psd_bw10_norm": {
+      "meaning": "Total frequency span of all bins within 10 dB of the global peak.",
+      "input_and_normalization": "Same calculation as above with a 10 dB threshold.",
+      "unit_or_coordinate": "Bandwidth divided by $F_s$.",
+      "calculation": "For $S_{10}=\\{k:D_k\\geq\\max_jD_j-10\\}$, return $\\max_{k\\in S_{10}}f_k-\\min_{k\\in S_{10}}f_k$, or zero for an empty mask. Range $[0,\\,1-1/M]$. "
+    },
+    "psd_lr_diff_db": {
+      "meaning": "Negative-frequency versus nonnegative-frequency power imbalance. Positive means the negative half has more power.",
+      "input_and_normalization": "$Z$; sums of $P_k$ over the two FFT halves.",
+      "unit_or_coordinate": "dB power ratio.",
+      "calculation": "$10\\log_{10}[(\\sum_{k=0}^{M/2-1}P_k+\\epsilon)/(\\sum_{k=M/2}^{M-1}P_k+\\epsilon)]$. DC belongs to the right half; the negative Nyquist bin belongs to the left. No fixed signal-independent finite bounds. "
+    },
+    "psd_flatness_db": {
+      "meaning": "Geometric-to-arithmetic mean FFT-power ratio; values nearer zero indicate a flatter full-grid power distribution.",
+      "input_and_normalization": "$Z$; all 8192 $P_k$, including out-of-band bins and the epsilon floor.",
+      "unit_or_coordinate": "dB ratio.",
+      "calculation": "$10\\log_{10}\\{\\exp[M^{-1}\\sum_k\\ln P_k]/[M^{-1}\\sum_kP_k]\\}$. Natural logarithm inside the geometric mean. Nonpositive mathematically, up to rounding; no fixed finite lower bound. "
+    },
+    "psd_ripple_std_db": {
+      "meaning": "Full-grid spread of log FFT power. This is not a passband-only ripple or peak-to-peak ripple measure.",
+      "input_and_normalization": "$Z$; subtract the mean of all 8192 $D_k$.",
+      "unit_or_coordinate": "dB.",
+      "calculation": "`np.std(D - np.mean(D))`, i.e. $\\sqrt{M^{-1}\\sum_k(D_k-\\bar D)^2}$ with `ddof=0`. Nonnegative; no fixed finite upper bound. No fitted-envelope subtraction. "
+    }
+  },
+  "array": {
+    "name": "psd_seq",
+    "shape": [
+      3,
+      512
+    ],
+    "channels": [
+      "X_n",
+      "Y_n",
+      "Z"
+    ],
+    "pooling": "arithmetic mean of 16 consecutive log-power values in dB",
+    "dtype": "float32",
+    "pooled_bin_spacing_ghz": 0.5
+  },
+  "definition_reference": "feature_definitions.md"
+}
